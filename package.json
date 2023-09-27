@@ -10,6 +10,7 @@
     "codegen": "graphql-codegen"
   },
   "dependencies": {
+    "@headlessui/react": "1.7.17",
     "next": "13.5.3",
     "next-themes": "0.2.1",
     "react": "18.2.0",
@@ -19,6 +20,7 @@
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.0",
     "@graphql-codegen/client-preset": "4.1.0",
+    "@headlessui/tailwindcss": "0.2.0",
     "@types/node": "20.7.0",
     "@types/react": "18.2.23",
     "@types/react-dom": "18.2.7",
