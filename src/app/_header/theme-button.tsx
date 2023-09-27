@@ -35,7 +35,7 @@ export function ThemeButton() {
         )}
         <span className="sr-only">Theme</span>
       </Listbox.Button>
-      <Listbox.Options className="absolute right-0 top-14 rounded-md border border-gray-300 bg-gray-100 dark:border-gray-700 dark:bg-gray-900">
+      <Listbox.Options className="absolute right-0 top-10 rounded-md border border-gray-300 bg-gray-100 dark:border-gray-700 dark:bg-gray-900">
         <Listbox.Option
           className={`flex h-12 cursor-pointer items-center gap-2 rounded-t-md px-4 font-medium hover:bg-gray-200 dark:hover:bg-gray-800 ${
             theme === "light" ? "text-blue-700 dark:text-blue-300" : ""
