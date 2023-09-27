@@ -1,5 +1,6 @@
 "use client";
 
+import { ThemeProvider } from "next-themes";
 import { ReactNode } from "react";
 import {
   Client as URQLClient,
@@ -14,5 +15,9 @@ const urqlClient = new URQLClient({
 });
 
 export function Providers(props: { children: ReactNode }) {
-  return <URQLProvider value={urqlClient}>{props.children}</URQLProvider>;
+  return (
+    <ThemeProvider attribute="class">
+      <URQLProvider value={urqlClient}>{props.children}</URQLProvider>
+    </ThemeProvider>
+  );
 }

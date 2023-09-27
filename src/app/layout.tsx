@@ -10,15 +10,17 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
-    <Providers>
-      <html lang="en">
-        <body className={inter.className}>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 ${inter.className}`}
+      >
+        <Providers>
           <div className="mx-auto max-w-5xl">
             <Header />
             {props.children}
           </div>
-        </body>
-      </html>
-    </Providers>
+        </Providers>
+      </body>
+    </html>
   );
 }
