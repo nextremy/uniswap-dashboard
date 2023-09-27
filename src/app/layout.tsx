@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Header } from "./header";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = { title: "Uniswap Dashboard" };
@@ -11,7 +12,12 @@ export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <Providers>
       <html lang="en">
-        <body className={inter.className}>{props.children}</body>
+        <body className={inter.className}>
+          <div className="mx-auto max-w-5xl">
+            <Header />
+            {props.children}
+          </div>
+        </body>
       </html>
     </Providers>
   );
