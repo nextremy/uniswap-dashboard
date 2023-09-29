@@ -89,7 +89,7 @@ export function PoolsTable() {
             <span className="sr-only">Back</span>
           </button>
           <input
-            className="w-10 rounded-md text-center font-medium text-blue-700 dark:bg-gray-800 dark:text-blue-300"
+            className="w-10 rounded-md bg-gray-200 text-center font-medium text-blue-700 dark:bg-gray-800 dark:text-blue-300"
             min={1}
             onChange={(event) => {
               const input = Number(event.target.value);
