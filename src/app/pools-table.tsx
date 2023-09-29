@@ -50,11 +50,11 @@ export function PoolsTable() {
       <Table.Wrapper>
         <Table>
           <Table.Head>
-            <Table.Row header>
-              <Table.Cell header>#</Table.Cell>
-              <Table.Cell header>Pool</Table.Cell>
-              <Table.Cell header>TVL (USD)</Table.Cell>
-              <Table.Cell header>24h volume (USD)</Table.Cell>
+            <Table.Row head>
+              <Table.Cell head>#</Table.Cell>
+              <Table.Cell head>Pool</Table.Cell>
+              <Table.Cell head>TVL (USD)</Table.Cell>
+              <Table.Cell head>24h volume (USD)</Table.Cell>
             </Table.Row>
           </Table.Head>
           <Table.Body>

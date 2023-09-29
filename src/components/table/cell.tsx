@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
-export function Cell(props: { header?: boolean; children: ReactNode }) {
-  if (props.header) {
+export function Cell(props: { head?: boolean; children: ReactNode }) {
+  if (props.head) {
     return (
       <th className="p-4 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
         {props.children}
