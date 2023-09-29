@@ -1,5 +1,6 @@
 "use client";
 
+import { Table } from "@/components/table";
 import { graphql } from "@/gql";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
@@ -45,49 +46,39 @@ export function PoolsTable() {
   return (
     <>
       <h2 className="text-lg font-bold">Pools</h2>
-      <div className="mt-2 overflow-x-auto rounded-lg border-2 border-gray-200 dark:border-gray-800">
-        <table className="w-full border-collapse border-spacing-0">
-          <thead>
-            <tr className="h-10 bg-gray-200 dark:bg-gray-800">
-              <th className="px-4 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
-                #
-              </th>
-              <th className="px-4 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
-                Pool
-              </th>
-              <th className="px-4 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
-                TVL (USD)
-              </th>
-              <th className="px-4 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
-                24h volume (USD)
-              </th>
-            </tr>
-          </thead>
-          <tbody>
+      <Table.Wrapper>
+        <Table>
+          <Table.Head>
+            <Table.Row header>
+              <Table.Cell header>#</Table.Cell>
+              <Table.Cell header>Pool</Table.Cell>
+              <Table.Cell header>TVL (USD)</Table.Cell>
+              <Table.Cell header>24h volume (USD)</Table.Cell>
+            </Table.Row>
+          </Table.Head>
+          <Table.Body>
             {data.pools.map((pool, poolIndex) => (
-              <tr key={pool.id}>
-                <td className="px-4 py-2 text-sm">
-                  {(page - 1) * 10 + poolIndex + 1}
-                </td>
-                <td className="px-4 py-2 text-sm">
+              <Table.Row key={pool.id}>
+                <Table.Cell>{(page - 1) * 10 + poolIndex + 1}</Table.Cell>
+                <Table.Cell>
                   {`${pool.token0.symbol}/${pool.token1.symbol}`}
-                </td>
-                <td className="px-4 py-2 text-sm">
+                </Table.Cell>
+                <Table.Cell>
                   $
                   {Intl.NumberFormat("en", { notation: "compact" }).format(
                     pool.totalValueLockedUSD,
                   )}
-                </td>
-                <td className="px-4 py-2 text-sm">
+                </Table.Cell>
+                <Table.Cell>
                   $
                   {Intl.NumberFormat("en", { notation: "compact" }).format(
                     pool.volumeUSD,
                   )}
-                </td>
-              </tr>
+                </Table.Cell>
+              </Table.Row>
             ))}
-          </tbody>
-        </table>
+          </Table.Body>
+        </Table>
         <nav className="flex justify-center gap-2 p-2">
           <button
             className="grid h-10 w-10 place-items-center rounded-md bg-gray-300 duration-150 enabled:hover:bg-gray-400 disabled:opacity-50 dark:bg-gray-700 dark:enabled:hover:bg-gray-600"
@@ -119,7 +110,7 @@ export function PoolsTable() {
             <span className="sr-only">Next</span>
           </button>
         </nav>
-      </div>
+      </Table.Wrapper>
     </>
   );
 }
