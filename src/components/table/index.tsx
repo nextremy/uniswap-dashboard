@@ -8,7 +8,7 @@ import { Wrapper } from "./wrapper";
 
 export function Table(props: { children: ReactNode }) {
   return (
-    <table className="w-full table-fixed border-collapse border-spacing-0">
+    <table className="w-full border-collapse border-spacing-0 md:table-fixed">
       {props.children}
     </table>
   );
