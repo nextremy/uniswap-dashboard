@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Body } from "./body";
 import { Cell } from "./cell";
+import { CellSkeleton } from "./cell-skeleton";
 import { Head } from "./head";
 import { Row } from "./row";
 import { Wrapper } from "./wrapper";
@@ -18,3 +19,4 @@ Table.Head = Head;
 Table.Row = Row;
 Table.Body = Body;
 Table.Cell = Cell;
+Table.CellSkeleton = CellSkeleton;
