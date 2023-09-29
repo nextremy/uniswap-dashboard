@@ -15,7 +15,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         className={`bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 ${inter.className}`}
       >
         <Providers>
-          <div className="mx-auto max-w-7xl">
+          <div>
             <Header />
             {props.children}
           </div>
