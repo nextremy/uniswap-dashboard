@@ -39,16 +39,13 @@ const poolsQuery = graphql(`
 
 export function PoolsTable() {
   const [page, setPage] = useState(1);
-  const [{ data }, reexecuteQuery] = useQuery({
+  const [{ data, fetching }, reexecuteQuery] = useQuery({
     query: poolsQuery,
     variables: {
       skip: (page - 1) * 10,
     },
   });
 
-  if (!data) {
-    return null;
-  }
   return (
     <>
       <div className="flex items-center justify-between">
@@ -74,26 +71,37 @@ export function PoolsTable() {
             </Table.Row>
           </Table.Head>
           <Table.Body>
-            {data.pools.map((pool, poolIndex) => (
-              <Table.Row key={pool.id}>
-                <Table.Cell>{(page - 1) * 10 + poolIndex + 1}</Table.Cell>
-                <Table.Cell>
-                  {`${pool.token0.symbol}/${pool.token1.symbol}`}
-                </Table.Cell>
-                <Table.Cell>
-                  $
-                  {Intl.NumberFormat("en", { notation: "compact" }).format(
-                    pool.totalValueLockedUSD,
-                  )}
-                </Table.Cell>
-                <Table.Cell>
-                  $
-                  {Intl.NumberFormat("en", { notation: "compact" }).format(
-                    pool.volumeUSD,
-                  )}
-                </Table.Cell>
-              </Table.Row>
-            ))}
+            {data === undefined || fetching
+              ? Array(10)
+                  .fill(null)
+                  .map((_, index) => (
+                    <Table.Row key={index}>
+                      <Table.CellSkeleton />
+                      <Table.CellSkeleton />
+                      <Table.CellSkeleton />
+                      <Table.CellSkeleton />
+                    </Table.Row>
+                  ))
+              : data.pools.map((pool, poolIndex) => (
+                  <Table.Row key={pool.id}>
+                    <Table.Cell>{(page - 1) * 10 + poolIndex + 1}</Table.Cell>
+                    <Table.Cell>
+                      {`${pool.token0.symbol}/${pool.token1.symbol}`}
+                    </Table.Cell>
+                    <Table.Cell>
+                      $
+                      {Intl.NumberFormat("en", { notation: "compact" }).format(
+                        pool.totalValueLockedUSD,
+                      )}
+                    </Table.Cell>
+                    <Table.Cell>
+                      $
+                      {Intl.NumberFormat("en", { notation: "compact" }).format(
+                        pool.volumeUSD,
+                      )}
+                    </Table.Cell>
+                  </Table.Row>
+                ))}
           </Table.Body>
         </Table>
         <nav className="flex justify-center gap-2 p-2">
