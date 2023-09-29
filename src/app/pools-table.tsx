@@ -81,7 +81,7 @@ export function PoolsTable() {
         </Table>
         <nav className="flex justify-center gap-2 p-2">
           <button
-            className="grid h-10 w-10 place-items-center rounded-md bg-gray-300 duration-150 enabled:hover:bg-gray-400 disabled:opacity-50 dark:bg-gray-700 dark:enabled:hover:bg-gray-600"
+            className="grid h-10 w-10 place-items-center rounded-md bg-gray-300 duration-150 enabled:hover:bg-gray-200 disabled:opacity-50 dark:bg-gray-700 dark:enabled:hover:bg-gray-600"
             disabled={page === 1}
             onClick={() => setPage((page) => page - 1)}
           >
@@ -103,7 +103,7 @@ export function PoolsTable() {
             value={page}
           />
           <button
-            className="grid h-10 w-10 place-items-center rounded-md bg-gray-300 duration-150 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600"
+            className="grid h-10 w-10 place-items-center rounded-md bg-gray-300 duration-150 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
             onClick={() => setPage((page) => page + 1)}
           >
             <ArrowRightIcon className="h-5 w-5" />
