@@ -13,6 +13,7 @@ const poolsQuery = graphql(`
       skip: $skip
       orderBy: totalValueLockedUSD
       orderDirection: desc
+      where: { volumeUSD_gt: 0 }
     ) {
       id
       totalValueLockedUSD
