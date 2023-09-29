@@ -1,8 +1,13 @@
 "use client";
 
+import { Button } from "@/components/button";
 import { Table } from "@/components/table";
 import { graphql } from "@/gql";
-import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/20/solid";
+import {
+  ArrowLeftIcon,
+  ArrowPathIcon,
+  ArrowRightIcon,
+} from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { useQuery } from "urql";
 
@@ -34,7 +39,7 @@ const poolsQuery = graphql(`
 
 export function PoolsTable() {
   const [page, setPage] = useState(1);
-  const [{ data }] = useQuery({
+  const [{ data }, reexecuteQuery] = useQuery({
     query: poolsQuery,
     variables: {
       skip: (page - 1) * 10,
@@ -46,7 +51,18 @@ export function PoolsTable() {
   }
   return (
     <>
-      <h2 className="text-lg font-bold">Pools</h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-lg font-bold">Pools</h2>
+        <Button
+          className="flex items-center gap-2"
+          intent="secondary"
+          onClick={() => reexecuteQuery({ requestPolicy: "network-only" })}
+        >
+          <ArrowPathIcon className="h-5 w-5" />
+          Refresh
+        </Button>
+      </div>
+      <div className="h-4" />
       <Table.Wrapper>
         <Table>
           <Table.Head>
