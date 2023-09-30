@@ -8,6 +8,7 @@ import {
   ArrowLeftIcon,
   ArrowPathIcon,
   ArrowRightIcon,
+  RectangleGroupIcon,
 } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { useQuery } from "urql";
@@ -50,7 +51,10 @@ export function PoolsTable() {
   return (
     <>
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-bold">Pools</h2>
+        <h2 className="flex items-center gap-2 text-lg font-bold">
+          <RectangleGroupIcon className="h-5 w-5" />
+          Pools
+        </h2>
         <Button
           className="flex items-center gap-2"
           intent="secondary"
