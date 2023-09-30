@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/button";
+import { IconButton } from "@/components/icon-button";
 import { Table } from "@/components/table";
 import { graphql } from "@/gql";
 import {
@@ -83,7 +84,7 @@ export function PoolsTable() {
                     </Table.Row>
                   ))
               : data.pools.map((pool, poolIndex) => (
-                  <Table.Row key={pool.id}>
+                  <Table.Row key={poolIndex}>
                     <Table.Cell>{(page - 1) * 10 + poolIndex + 1}</Table.Cell>
                     <Table.Cell>
                       {`${pool.token0.symbol}/${pool.token1.symbol}`}
@@ -105,14 +106,13 @@ export function PoolsTable() {
           </Table.Body>
         </Table>
         <nav className="flex justify-center gap-2 p-2">
-          <button
-            className="grid h-10 w-10 place-items-center rounded-md bg-gray-200 text-gray-700 duration-150 enabled:hover:bg-gray-300 disabled:opacity-50 dark:bg-gray-800 dark:text-gray-300 dark:enabled:hover:bg-gray-700"
+          <IconButton
             disabled={page === 1}
             onClick={() => setPage((page) => page - 1)}
           >
             <ArrowLeftIcon className="h-5 w-5" />
             <span className="sr-only">Back</span>
-          </button>
+          </IconButton>
           <input
             className="w-10 rounded-md bg-gray-200 text-center font-medium text-blue-700 dark:bg-gray-800 dark:text-blue-300"
             min={1}
@@ -127,13 +127,10 @@ export function PoolsTable() {
             type="number"
             value={page}
           />
-          <button
-            className="grid h-10 w-10 place-items-center rounded-md bg-gray-200 text-gray-700 duration-150 hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
-            onClick={() => setPage((page) => page + 1)}
-          >
+          <IconButton onClick={() => setPage((page) => page + 1)}>
             <ArrowRightIcon className="h-5 w-5" />
             <span className="sr-only">Next</span>
-          </button>
+          </IconButton>
         </nav>
       </Table.Wrapper>
     </>
