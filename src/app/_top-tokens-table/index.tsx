@@ -28,7 +28,7 @@ const query = graphql(`
   }
 `);
 
-export function TokensTable() {
+export function TopTokensTable() {
   const [page, setPage] = useState(1);
   const [{ data, fetching }, reexecuteQuery] = useQuery({
     query,
@@ -42,7 +42,7 @@ export function TokensTable() {
       <div className="flex items-center justify-between">
         <h2 className="flex items-center gap-2 text-xl font-bold">
           <CurrencyDollarIcon className="h-6 w-6" />
-          Tokens
+          Top Tokens
         </h2>
         <Button
           className="flex items-center gap-2"

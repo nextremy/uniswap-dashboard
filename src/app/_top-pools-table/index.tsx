@@ -34,7 +34,7 @@ const poolsQuery = graphql(`
   }
 `);
 
-export function PoolsTable() {
+export function TopPoolsTable() {
   const [page, setPage] = useState(1);
   const [{ data, fetching }, reexecuteQuery] = useQuery({
     query: poolsQuery,
@@ -48,7 +48,7 @@ export function PoolsTable() {
       <div className="flex items-center justify-between">
         <h2 className="flex items-center gap-2 text-xl font-bold">
           <RectangleGroupIcon className="h-6 w-6" />
-          Pools
+          Top Pools
         </h2>
         <Button
           className="flex items-center gap-2"
