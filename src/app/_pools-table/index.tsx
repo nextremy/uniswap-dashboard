@@ -44,7 +44,7 @@ export function PoolsTable() {
   });
 
   return (
-    <>
+    <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <h2 className="flex items-center gap-2 text-xl font-bold">
           <RectangleGroupIcon className="h-6 w-6" />
@@ -59,7 +59,6 @@ export function PoolsTable() {
           Refresh
         </Button>
       </div>
-      <div className="h-4" />
       <Table
         columns={["#", "Pool", "TVL (USD)", "24h volume (USD)"]}
         page={page}
@@ -79,6 +78,6 @@ export function PoolsTable() {
         }
         setPage={setPage}
       />
-    </>
+    </div>
   );
 }
