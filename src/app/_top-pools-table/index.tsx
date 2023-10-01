@@ -4,7 +4,6 @@ import { Button } from "@/components/button";
 import { Table } from "@/components/table";
 import { graphql } from "@/gql";
 import { ArrowPathIcon } from "@heroicons/react/20/solid";
-import { RectangleGroupIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { useQuery } from "urql";
 
@@ -46,10 +45,7 @@ export function TopPoolsTable() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <h2 className="flex items-center gap-2 text-xl font-bold">
-          <RectangleGroupIcon className="h-6 w-6" />
-          Top Pools
-        </h2>
+        <h2 className="flex items-center gap-2 text-xl font-bold">Top Pools</h2>
         <Button
           className="flex items-center gap-2"
           intent="secondary"

@@ -4,7 +4,6 @@ import { Button } from "@/components/button";
 import { Table } from "@/components/table";
 import { graphql } from "@/gql";
 import { ArrowPathIcon } from "@heroicons/react/20/solid";
-import { CurrencyDollarIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { useQuery } from "urql";
 
@@ -41,7 +40,6 @@ export function TopTokensTable() {
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <h2 className="flex items-center gap-2 text-xl font-bold">
-          <CurrencyDollarIcon className="h-6 w-6" />
           Top Tokens
         </h2>
         <Button
