@@ -44,18 +44,6 @@ export function TopPoolsTable() {
     },
   });
 
-  console.log(
-    "TVL",
-    Intl.NumberFormat("en", { notation: "compact" }).format(
-      data?.pools[0].totalValueLockedUSD,
-    ),
-  );
-  console.log(
-    "Volume",
-    Intl.NumberFormat("en", { notation: "compact" }).format(
-      data?.pools[0].poolDayData[0].volumeUSD,
-    ),
-  );
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
