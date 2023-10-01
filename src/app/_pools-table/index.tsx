@@ -45,7 +45,7 @@ export function PoolsTable() {
   return (
     <>
       <div className="flex items-center justify-between">
-        <h2 className="flex items-center gap-2 text-lg font-bold">
+        <h2 className="flex items-center gap-2 text-xl font-bold">
           <RectangleGroupIcon className="h-5 w-5" />
           Pools
         </h2>
