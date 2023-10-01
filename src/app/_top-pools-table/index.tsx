@@ -7,7 +7,7 @@ import { ArrowPathIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { useQuery } from "urql";
 
-const poolsQuery = graphql(`
+const query = graphql(`
   query Pools($skip: Int) {
     pools(
       first: 10
@@ -17,8 +17,6 @@ const poolsQuery = graphql(`
       where: { volumeUSD_gt: 0 }
     ) {
       id
-      totalValueLockedUSD
-      volumeUSD
       token0 {
         id
         name
@@ -29,6 +27,10 @@ const poolsQuery = graphql(`
         name
         symbol
       }
+      totalValueLockedUSD
+      poolDayData(first: 1, orderBy: date, orderDirection: desc) {
+        volumeUSD
+      }
     }
   }
 `);
@@ -36,12 +38,24 @@ const poolsQuery = graphql(`
 export function TopPoolsTable() {
   const [page, setPage] = useState(1);
   const [{ data, fetching }, reexecuteQuery] = useQuery({
-    query: poolsQuery,
+    query,
     variables: {
       skip: (page - 1) * 10,
     },
   });
 
+  console.log(
+    "TVL",
+    Intl.NumberFormat("en", { notation: "compact" }).format(
+      data?.pools[0].totalValueLockedUSD,
+    ),
+  );
+  console.log(
+    "Volume",
+    Intl.NumberFormat("en", { notation: "compact" }).format(
+      data?.pools[0].poolDayData[0].volumeUSD,
+    ),
+  );
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
@@ -76,13 +90,15 @@ export function TopPoolsTable() {
                       {pool.token0.symbol}/{pool.token1.symbol}
                     </Table.BodyCell>
                     <Table.BodyCell>
-                      ${Intl.NumberFormat("en", { notation: "compact" }).format(
+                      $
+                      {Intl.NumberFormat("en", { notation: "compact" }).format(
                         pool.totalValueLockedUSD,
                       )}
                     </Table.BodyCell>
                     <Table.BodyCell>
-                      ${Intl.NumberFormat("en", { notation: "compact" }).format(
-                        pool.volumeUSD,
+                      $
+                      {Intl.NumberFormat("en", { notation: "compact" }).format(
+                        pool.poolDayData[0].volumeUSD,
                       )}
                     </Table.BodyCell>
                   </Table.Row>
