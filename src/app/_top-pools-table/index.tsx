@@ -55,25 +55,53 @@ export function TopPoolsTable() {
           Refresh
         </Button>
       </div>
-      <Table
-        columns={["#", "Pool", "TVL (USD)", "24h volume (USD)"]}
-        page={page}
-        rows={
-          data && !fetching
-            ? data.pools.map((pool, poolIndex) => [
-                (page - 1) * 10 + (poolIndex + 1),
-                `${pool.token0.symbol}/${pool.token1.symbol}`,
-                `$${Intl.NumberFormat("en", { notation: "compact" }).format(
-                  pool.totalValueLockedUSD,
-                )}`,
-                `$${Intl.NumberFormat("en", { notation: "compact" }).format(
-                  pool.volumeUSD,
-                )}`,
-              ])
-            : null
-        }
-        setPage={setPage}
-      />
+      <Table.Container>
+        <Table>
+          <Table.Head>
+            <Table.Row>
+              <Table.HeadCell className="w-16">#</Table.HeadCell>
+              <Table.HeadCell>Pool</Table.HeadCell>
+              <Table.HeadCell className="w-48">TVL (USD)</Table.HeadCell>
+              <Table.HeadCell className="w-48">24h volume (USD)</Table.HeadCell>
+            </Table.Row>
+          </Table.Head>
+          <Table.Body>
+            {data && !fetching
+              ? data.pools.map((pool, poolIndex) => (
+                  <Table.Row key={pool.id}>
+                    <Table.BodyCell>
+                      {(page - 1) * 10 + (poolIndex + 1)}
+                    </Table.BodyCell>
+                    <Table.BodyCell>
+                      {pool.token0.symbol}/{pool.token1.symbol}
+                    </Table.BodyCell>
+                    <Table.BodyCell>
+                      ${Intl.NumberFormat("en", { notation: "compact" }).format(
+                        pool.totalValueLockedUSD,
+                      )}
+                    </Table.BodyCell>
+                    <Table.BodyCell>
+                      ${Intl.NumberFormat("en", { notation: "compact" }).format(
+                        pool.volumeUSD,
+                      )}
+                    </Table.BodyCell>
+                  </Table.Row>
+                ))
+              : Array(10)
+                  .fill(null)
+                  .map((_, index0) => (
+                    <Table.Row key={index0}>
+                      {Array(4)
+                        .fill(null)
+                        .map((_, index1) => (
+                          <Table.BodyCell key={index1} loading />
+                        ))}
+                    </Table.Row>
+                  ))}
+          </Table.Body>
+        </Table>
+        <Table.Pagination page={page} setPage={setPage} />
+      </Table.Container>
     </div>
   );
 }
