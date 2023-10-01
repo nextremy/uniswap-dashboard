@@ -68,10 +68,10 @@ export function PoolsTable() {
             ? data.pools.map((pool, poolIndex) => [
                 (page - 1) * 10 + (poolIndex + 1),
                 `${pool.token0.symbol}/${pool.token1.symbol}`,
-                `${Intl.NumberFormat("en", { notation: "compact" }).format(
+                `$${Intl.NumberFormat("en", { notation: "compact" }).format(
                   pool.totalValueLockedUSD,
                 )}`,
-                `${Intl.NumberFormat("en", { notation: "compact" }).format(
+                `$${Intl.NumberFormat("en", { notation: "compact" }).format(
                   pool.volumeUSD,
                 )}`,
               ])
