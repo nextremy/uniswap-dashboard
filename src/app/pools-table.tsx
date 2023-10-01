@@ -59,52 +59,25 @@ export function PoolsTable() {
         </Button>
       </div>
       <div className="h-4" />
-      <Table.Wrapper>
-        <Table>
-          <Table.Head>
-            <Table.Row head>
-              <Table.Cell head>#</Table.Cell>
-              <Table.Cell head>Pool</Table.Cell>
-              <Table.Cell head>TVL (USD)</Table.Cell>
-              <Table.Cell head>24h volume (USD)</Table.Cell>
-            </Table.Row>
-          </Table.Head>
-          <Table.Body>
-            {data === undefined || fetching
-              ? Array(10)
-                  .fill(null)
-                  .map((_, index) => (
-                    <Table.Row key={index}>
-                      <Table.CellSkeleton />
-                      <Table.CellSkeleton />
-                      <Table.CellSkeleton />
-                      <Table.CellSkeleton />
-                    </Table.Row>
-                  ))
-              : data.pools.map((pool, poolIndex) => (
-                  <Table.Row key={poolIndex}>
-                    <Table.Cell>{(page - 1) * 10 + poolIndex + 1}</Table.Cell>
-                    <Table.Cell>
-                      {`${pool.token0.symbol}/${pool.token1.symbol}`}
-                    </Table.Cell>
-                    <Table.Cell>
-                      $
-                      {Intl.NumberFormat("en", { notation: "compact" }).format(
-                        pool.totalValueLockedUSD,
-                      )}
-                    </Table.Cell>
-                    <Table.Cell>
-                      $
-                      {Intl.NumberFormat("en", { notation: "compact" }).format(
-                        pool.volumeUSD,
-                      )}
-                    </Table.Cell>
-                  </Table.Row>
-                ))}
-          </Table.Body>
-        </Table>
-        <Table.Pagination page={page} setPage={setPage} />
-      </Table.Wrapper>
+      <Table
+        columns={["#", "Pool", "TVL (USD)", "24h volume (USD)"]}
+        page={page}
+        rows={
+          data && !fetching
+            ? data.pools.map((pool, poolIndex) => [
+                (page - 1) * 10 + (poolIndex + 1),
+                `${pool.token0.symbol}/${pool.token1.symbol}`,
+                `${Intl.NumberFormat("en", { notation: "compact" }).format(
+                  pool.totalValueLockedUSD,
+                )}`,
+                `${Intl.NumberFormat("en", { notation: "compact" }).format(
+                  pool.volumeUSD,
+                )}`,
+              ])
+            : null
+        }
+        setPage={setPage}
+      />
     </>
   );
 }
