@@ -3,7 +3,8 @@
 import { Button } from "@/components/button";
 import { Table } from "@/components/table";
 import { graphql } from "@/gql";
-import { ArrowPathIcon, RectangleGroupIcon } from "@heroicons/react/20/solid";
+import { ArrowPathIcon } from "@heroicons/react/20/solid";
+import { RectangleGroupIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { useQuery } from "urql";
 
@@ -46,7 +47,7 @@ export function PoolsTable() {
     <>
       <div className="flex items-center justify-between">
         <h2 className="flex items-center gap-2 text-xl font-bold">
-          <RectangleGroupIcon className="h-5 w-5" />
+          <RectangleGroupIcon className="h-6 w-6" />
           Pools
         </h2>
         <Button
