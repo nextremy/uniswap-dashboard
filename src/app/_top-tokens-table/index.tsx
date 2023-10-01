@@ -80,19 +80,28 @@ export function TopTokensTable() {
                     </Table.BodyCell>
                     <Table.BodyCell>
                       {(() => {
-                        const price0 = Number(token.tokenDayData[0].priceUSD);
-                        const price1 = Number(token.tokenDayData[1].priceUSD);
-                        const change = (price0 / price1 - 1).toFixed(2);
-                        if (change.startsWith("-")) {
+                        const currentPrice = Number(
+                          token.tokenDayData[0].priceUSD,
+                        );
+                        const previousPrice = Number(
+                          token.tokenDayData[1].priceUSD,
+                        );
+                        const changePercentage = (
+                          ((currentPrice - previousPrice) / previousPrice) *
+                          100
+                        ).toFixed(2);
+                        if (changePercentage.endsWith("0.00")) {
+                          return <span>0.00%</span>;
+                        } else if (changePercentage.startsWith("-")) {
                           return (
                             <span className="text-red-700 dark:text-red-300">
-                              {change}%
+                              {changePercentage}%
                             </span>
                           );
                         } else {
                           return (
                             <span className="text-green-700 dark:text-green-300">
-                              {change}%
+                              {changePercentage}%
                             </span>
                           );
                         }
