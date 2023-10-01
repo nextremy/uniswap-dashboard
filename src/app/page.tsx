@@ -1,4 +1,4 @@
-import { PoolsTable } from "./pools-table";
+import { PoolsTable } from "./_pools-table";
 
 export default function Home() {
   return (

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Header } from "./_header";
+import { Providers } from "./_providers";
 import "./globals.css";
-import { Providers } from "./providers";
 
 export const metadata: Metadata = { title: "Uniswap Dashboard" };
 
