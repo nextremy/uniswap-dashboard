@@ -39,7 +39,9 @@ export function TopTokensTable() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <h2 className="flex items-center gap-2 text-xl font-bold">Top Pools</h2>
+        <h2 className="flex items-center gap-2 text-xl font-bold">
+          Top Tokens
+        </h2>
         <Button
           className="flex items-center gap-2"
           intent="secondary"
