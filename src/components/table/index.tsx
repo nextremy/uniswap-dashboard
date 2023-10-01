@@ -3,6 +3,7 @@ import { Body } from "./body";
 import { Cell } from "./cell";
 import { CellSkeleton } from "./cell-skeleton";
 import { Head } from "./head";
+import { Pagination } from "./pagination";
 import { Row } from "./row";
 import { Wrapper } from "./wrapper";
 
@@ -20,3 +21,4 @@ Table.Row = Row;
 Table.Body = Body;
 Table.Cell = Cell;
 Table.CellSkeleton = CellSkeleton;
+Table.Pagination = Pagination;

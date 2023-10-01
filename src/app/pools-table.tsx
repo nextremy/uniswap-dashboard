@@ -1,15 +1,9 @@
 "use client";
 
 import { Button } from "@/components/button";
-import { IconButton } from "@/components/icon-button";
 import { Table } from "@/components/table";
 import { graphql } from "@/gql";
-import {
-  ArrowLeftIcon,
-  ArrowPathIcon,
-  ArrowRightIcon,
-  RectangleGroupIcon,
-} from "@heroicons/react/20/solid";
+import { ArrowPathIcon, RectangleGroupIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { useQuery } from "urql";
 
@@ -109,33 +103,7 @@ export function PoolsTable() {
                 ))}
           </Table.Body>
         </Table>
-        <nav className="flex justify-center gap-2 p-2">
-          <IconButton
-            disabled={page === 1}
-            onClick={() => setPage((page) => page - 1)}
-          >
-            <ArrowLeftIcon className="h-5 w-5" />
-            <span className="sr-only">Back</span>
-          </IconButton>
-          <input
-            className="w-10 rounded-md bg-gray-200 text-center font-medium text-blue-700 dark:bg-gray-800 dark:text-blue-300"
-            min={1}
-            onChange={(event) => {
-              const input = Number(event.target.value);
-              if (isNaN(input) || input < 1) {
-                setPage(1);
-                return;
-              }
-              setPage(input);
-            }}
-            type="number"
-            value={page}
-          />
-          <IconButton onClick={() => setPage((page) => page + 1)}>
-            <ArrowRightIcon className="h-5 w-5" />
-            <span className="sr-only">Next</span>
-          </IconButton>
-        </nav>
+        <Table.Pagination page={page} setPage={setPage} />
       </Table.Wrapper>
     </>
   );
