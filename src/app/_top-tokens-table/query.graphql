@@ -1,10 +1,5 @@
-query Tokens($skip: Int) {
-  tokens(
-    first: 10
-    skip: $skip
-    orderBy: totalValueLockedUSD
-    orderDirection: desc
-  ) {
+query Tokens {
+  tokens(first: 100, orderBy: totalValueLockedUSD, orderDirection: desc) {
     id
     name
     symbol
