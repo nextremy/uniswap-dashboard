@@ -50,9 +50,9 @@ export function TopTokensTable() {
             <tr className="h-12 text-left font-semibold text-gray-600 dark:text-gray-400">
               <th className="w-16 px-4">#</th>
               <th>Token</th>
-              <th className="w-48 px-4">Price (USD)</th>
+              <th className="w-48 px-4">Price</th>
               <th className="w-48 px-4">24h change</th>
-              <th className="w-48 px-4">TVL (USD)</th>
+              <th className="w-48 px-4">TVL</th>
             </tr>
           </thead>
           <tbody>
