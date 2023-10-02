@@ -21,11 +21,7 @@ export function TransactionsTable() {
         <h2 className="flex items-center gap-2 text-xl font-bold">
           Transactions
         </h2>
-        <Button
-          className="flex items-center gap-2"
-          intent="secondary"
-          onClick={refreshTransactions}
-        >
+        <Button intent="secondary" onClick={refreshTransactions}>
           <ArrowPathIcon className="h-5 w-5" />
           Refresh
         </Button>

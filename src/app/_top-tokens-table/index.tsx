@@ -36,7 +36,6 @@ export function TopTokensTable() {
           Top Tokens
         </h2>
         <Button
-          className="flex items-center gap-2"
           intent="secondary"
           onClick={() => reexecuteQuery({ requestPolicy: "network-only" })}
         >
