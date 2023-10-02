@@ -1,0 +1,55 @@
+query Transactions {
+  transactions(first: 100, orderBy: timestamp, orderDirection: desc) {
+    __typename
+    id
+    timestamp
+    swaps {
+      id
+      amount0
+      amount1
+      amountUSD
+      origin
+      timestamp
+      token0 {
+        id
+        symbol
+      }
+      token1 {
+        id
+        symbol
+      }
+    }
+    mints {
+      id
+      amount0
+      amount1
+      amountUSD
+      origin
+      timestamp
+      token0 {
+        id
+        symbol
+      }
+      token1 {
+        id
+        symbol
+      }
+    }
+    burns {
+      id
+      amount0
+      amount1
+      amountUSD
+      origin
+      timestamp
+      token0 {
+        id
+        symbol
+      }
+      token1 {
+        id
+        symbol
+      }
+    }
+  }
+}
