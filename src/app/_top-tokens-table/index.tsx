@@ -73,7 +73,6 @@ export function TopTokensTable() {
           </IconButton>
           <input
             className="w-12 rounded-md bg-gray-200 text-center font-medium text-blue-700 dark:bg-gray-800 dark:text-blue-300"
-            min={1}
             onChange={handlePageInputChange}
             type="number"
             value={page}
