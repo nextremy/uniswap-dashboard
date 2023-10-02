@@ -1,4 +1,5 @@
 import { LoadingRows } from "@/components/LoadingRows";
+import { getTokenIconSrc } from "@/utils/getTokenIconSrc";
 import { useTokens } from "./useTokens";
 
 type TokenRowsProps = {
@@ -16,7 +17,20 @@ export function TokenRows({ page }: TokenRowsProps) {
     <tr className="h-16" key={token.id}>
       <td className="px-4">{(page - 1) * 10 + (tokenIndex + 1)}</td>
       <td className="px-4">
-        {token.name} ({token.symbol})
+        <div className="flex h-16 items-center gap-4">
+          <img
+            alt=""
+            className="rounded-full"
+            height={24}
+            onError={({ currentTarget }) => {
+              currentTarget.onerror = null;
+              currentTarget.src = "blank.png";
+            }}
+            src={getTokenIconSrc(token.id)}
+            width={24}
+          />
+          {token.name} ({token.symbol})
+        </div>
       </td>
       <td className="px-4">
         $
