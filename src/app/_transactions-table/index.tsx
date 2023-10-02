@@ -1,19 +1,16 @@
 "use client";
 
 import { Button } from "@/components/button";
-import { IconButton } from "@/components/icon-button";
-import {
-  ArrowLeftIcon,
-  ArrowPathIcon,
-  ArrowRightIcon,
-} from "@heroicons/react/20/solid";
+import { TablePagination } from "@/components/table-pagination";
+import { ArrowPathIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { TransactionRows } from "./transactions-rows";
 import { useTransactions } from "./use-transactions";
 
 export function TransactionsTable() {
   const [page, setPage] = useState(1);
-  const { refreshTransactions } = useTransactions();
+  const { transactions, refreshTransactions } = useTransactions();
+  const pageCount = transactions && Math.ceil(transactions.length / 10);
 
   return (
     <div className="flex flex-col gap-4">
@@ -41,22 +38,7 @@ export function TransactionsTable() {
             <TransactionRows page={page} />
           </tbody>
         </table>
-        <nav className="flex justify-center gap-2 p-2">
-          <IconButton
-            disabled={page === 1}
-            onClick={() => setPage((page) => page - 1)}
-          >
-            <ArrowLeftIcon className="h-5 w-5" />
-            <span className="sr-only">Back</span>
-          </IconButton>
-          <div className="grid w-12 place-items-center rounded-md bg-gray-200 font-medium text-blue-700 dark:bg-gray-800 dark:text-blue-300">
-            {page}
-          </div>
-          <IconButton onClick={() => setPage((page) => page + 1)}>
-            <ArrowRightIcon className="h-5 w-5" />
-            <span className="sr-only">Next</span>
-          </IconButton>
-        </nav>
+        <TablePagination page={page} pageCount={pageCount} setPage={setPage} />
       </div>
     </div>
   );
