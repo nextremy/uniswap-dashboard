@@ -4,7 +4,7 @@ import { Button } from "@/components/button";
 import { TablePagination } from "@/components/table-pagination";
 import { ArrowPathIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
-import { TransactionRows } from "./transactions-rows";
+import { TransactionRows } from "./transaction-rows";
 import { useTransactions } from "./use-transactions";
 
 export function TransactionsTable() {
