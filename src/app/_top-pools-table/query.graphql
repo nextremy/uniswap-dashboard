@@ -1,0 +1,25 @@
+query Pools($skip: Int) {
+  pools(
+    first: 10
+    skip: $skip
+    orderBy: totalValueLockedUSD
+    orderDirection: desc
+    where: { volumeUSD_gt: 0 }
+  ) {
+    id
+    token0 {
+      id
+      name
+      symbol
+    }
+    token1 {
+      id
+      name
+      symbol
+    }
+    totalValueLockedUSD
+    poolDayData(first: 1, orderBy: date, orderDirection: desc) {
+      volumeUSD
+    }
+  }
+}

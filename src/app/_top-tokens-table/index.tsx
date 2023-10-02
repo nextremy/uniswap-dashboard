@@ -2,8 +2,7 @@
 
 import { Button } from "@/components/button";
 import { IconButton } from "@/components/icon-button";
-import { graphql } from "@/gql";
-import { TokensQuery } from "@/gql/graphql";
+import { TokensDocument, TokensQuery } from "@/gql/graphql";
 import {
   ArrowLeftIcon,
   ArrowPathIcon,
@@ -12,30 +11,10 @@ import {
 import { ChangeEvent, useState } from "react";
 import { useQuery } from "urql";
 
-const query = graphql(`
-  query Tokens($skip: Int) {
-    tokens(
-      first: 10
-      skip: $skip
-      orderBy: totalValueLockedUSD
-      orderDirection: desc
-    ) {
-      id
-      name
-      symbol
-      totalValueLockedUSD
-      tokenDayData(first: 2, orderBy: date, orderDirection: desc) {
-        date
-        priceUSD
-      }
-    }
-  }
-`);
-
 export function TopTokensTable() {
   const [page, setPage] = useState(1);
   const [{ data, fetching }, reexecuteQuery] = useQuery({
-    query,
+    query: TokensDocument,
     variables: {
       skip: (page - 1) * 10,
     },

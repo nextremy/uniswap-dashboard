@@ -1,0 +1,17 @@
+query Tokens($skip: Int) {
+  tokens(
+    first: 10
+    skip: $skip
+    orderBy: totalValueLockedUSD
+    orderDirection: desc
+  ) {
+    id
+    name
+    symbol
+    totalValueLockedUSD
+    tokenDayData(first: 2, orderBy: date, orderDirection: desc) {
+      date
+      priceUSD
+    }
+  }
+}

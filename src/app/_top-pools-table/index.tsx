@@ -2,8 +2,7 @@
 
 import { Button } from "@/components/button";
 import { IconButton } from "@/components/icon-button";
-import { graphql } from "@/gql";
-import { PoolsQuery } from "@/gql/graphql";
+import { PoolsDocument, PoolsQuery } from "@/gql/graphql";
 import {
   ArrowLeftIcon,
   ArrowPathIcon,
@@ -12,38 +11,10 @@ import {
 import { ChangeEvent, useState } from "react";
 import { useQuery } from "urql";
 
-const query = graphql(`
-  query Pools($skip: Int) {
-    pools(
-      first: 10
-      skip: $skip
-      orderBy: totalValueLockedUSD
-      orderDirection: desc
-      where: { volumeUSD_gt: 0 }
-    ) {
-      id
-      token0 {
-        id
-        name
-        symbol
-      }
-      token1 {
-        id
-        name
-        symbol
-      }
-      totalValueLockedUSD
-      poolDayData(first: 1, orderBy: date, orderDirection: desc) {
-        volumeUSD
-      }
-    }
-  }
-`);
-
 export function TopPoolsTable() {
   const [page, setPage] = useState(1);
   const [{ data, fetching }, reexecuteQuery] = useQuery({
-    query,
+    query: PoolsDocument,
     variables: {
       skip: (page - 1) * 10,
     },
@@ -74,7 +45,7 @@ export function TopPoolsTable() {
       <div className="overflow-x-auto rounded-lg border-2 border-gray-200 dark:border-gray-800">
         <table className="w-full border-collapse border-spacing-0 md:table-fixed">
           <thead>
-            <tr className="text-left font-semibold text-gray-600 dark:text-gray-400 h-12">
+            <tr className="h-12 text-left font-semibold text-gray-600 dark:text-gray-400">
               <th className="w-16 px-4">#</th>
               <th className="px-4">Pool</th>
               <th className="w-48 px-4">TVL (USD)</th>
