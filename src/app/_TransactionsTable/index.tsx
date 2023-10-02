@@ -1,11 +1,11 @@
 "use client";
 
-import { Button } from "@/components/button";
-import { TablePagination } from "@/components/table-pagination";
+import { Button } from "@/components/Button";
+import { TablePagination } from "@/components/TablePagination";
 import { ArrowPathIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
-import { TransactionRows } from "./transaction-rows";
-import { useTransactions } from "./use-transactions";
+import { TransactionRows } from "./TransactionRows";
+import { useTransactions } from "./useTransactions";
 
 export function TransactionsTable() {
   const [page, setPage] = useState(1);

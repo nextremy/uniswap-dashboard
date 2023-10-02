@@ -1,6 +1,6 @@
-import { TopPoolsTable } from "./_top-pools-table";
-import { TopTokensTable } from "./_top-tokens-table";
-import { TransactionsTable } from "./_transactions-table";
+import { TopPoolsTable } from "./_TopPoolsTable";
+import { TopTokensTable } from "./_TopTokensTable";
+import { TransactionsTable } from "./_TransactionsTable";
 
 export default function Home() {
   return (

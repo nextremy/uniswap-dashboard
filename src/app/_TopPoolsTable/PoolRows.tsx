@@ -1,5 +1,5 @@
-import { LoadingRows } from "@/components/loading-rows";
-import { usePools } from "./use-pools";
+import { LoadingRows } from "@/components/LoadingRows";
+import { usePools } from "./usePools";
 
 type PoolRowsProps = {
   page: number;

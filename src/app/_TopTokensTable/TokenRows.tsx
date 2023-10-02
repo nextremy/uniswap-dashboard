@@ -1,5 +1,5 @@
-import { LoadingRows } from "@/components/loading-rows";
-import { useTokens } from "./use-tokens";
+import { LoadingRows } from "@/components/LoadingRows";
+import { useTokens } from "./useTokens";
 
 type TokenRowsProps = {
   page: number;

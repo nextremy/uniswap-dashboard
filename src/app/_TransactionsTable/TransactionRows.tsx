@@ -3,8 +3,8 @@
 import { cx } from "class-variance-authority";
 import { differenceInMinutes } from "date-fns";
 import Link from "next/link";
-import { LoadingRows } from "./loading-rows";
-import { useTransactions } from "./use-transactions";
+import { LoadingRows } from "./LoadingRows";
+import { useTransactions } from "./useTransactions";
 
 type TransactionRowsProps = {
   page: number;

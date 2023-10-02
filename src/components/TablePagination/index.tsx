@@ -1,4 +1,4 @@
-import { IconButton } from "@/components/icon-button";
+import { IconButton } from "@/components/IconButton";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/20/solid";
 import { Dispatch, SetStateAction } from "react";
 
