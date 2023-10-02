@@ -1,9 +1,9 @@
 "use client";
 
+import { LoadingRows } from "@/components/LoadingRows";
 import { cx } from "class-variance-authority";
 import { differenceInMinutes } from "date-fns";
 import Link from "next/link";
-import { LoadingRows } from "./LoadingRows";
 import { useTransactions } from "./useTransactions";
 
 type TransactionRowsProps = {
@@ -14,7 +14,7 @@ export function TransactionRows({ page }: TransactionRowsProps) {
   const { transactions, fetchingTransactions } = useTransactions();
 
   if (!transactions || fetchingTransactions) {
-    return <LoadingRows />;
+    return <LoadingRows columnCount={5} rowCount={10} />;
   }
   const transactionsPage = transactions.slice(
     (page - 1) * 10,
