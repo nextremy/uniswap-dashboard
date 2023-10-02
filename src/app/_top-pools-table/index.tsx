@@ -121,7 +121,7 @@ function LoadingRows() {
           .fill(null)
           .map((_, index1) => (
             <td className="h-16 px-4" key={index1}>
-              <div className="h-6 animate-pulse rounded-md bg-gray-300 dark:bg-gray-700" />
+              <div className="h-6 animate-pulse rounded-md bg-gray-200 dark:bg-gray-800" />
             </td>
           ))}
       </tr>
