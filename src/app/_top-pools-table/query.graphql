@@ -1,7 +1,6 @@
-query Pools($skip: Int) {
+query Pools {
   pools(
-    first: 10
-    skip: $skip
+    first: 100
     orderBy: totalValueLockedUSD
     orderDirection: desc
     where: { volumeUSD_gt: 0 }
