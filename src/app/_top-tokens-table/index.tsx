@@ -146,7 +146,7 @@ function LoadingRows() {
     .fill(null)
     .map((_, index0) => (
       <tr className="h-16" key={index0}>
-        {Array(4)
+        {Array(5)
           .fill(null)
           .map((_, index1) => (
             <td className="px-4" key={index1}>
