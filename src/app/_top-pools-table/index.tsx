@@ -1,10 +1,15 @@
 "use client";
 
 import { Button } from "@/components/button";
-import { Table } from "@/components/table";
+import { IconButton } from "@/components/icon-button";
 import { graphql } from "@/gql";
-import { ArrowPathIcon } from "@heroicons/react/20/solid";
-import { useState } from "react";
+import { PoolsQuery } from "@/gql/graphql";
+import {
+  ArrowLeftIcon,
+  ArrowPathIcon,
+  ArrowRightIcon,
+} from "@heroicons/react/20/solid";
+import { ChangeEvent, useState } from "react";
 import { useQuery } from "urql";
 
 const query = graphql(`
@@ -44,6 +49,15 @@ export function TopPoolsTable() {
     },
   });
 
+  function handlePageInputChange(event: ChangeEvent<HTMLInputElement>) {
+    const input = Number(event.target.value);
+    if (input < 1 || isNaN(input)) {
+      setPage(1);
+    } else {
+      setPage(input);
+    }
+  }
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
@@ -57,55 +71,88 @@ export function TopPoolsTable() {
           Refresh
         </Button>
       </div>
-      <Table.Container>
-        <Table>
-          <Table.Head>
-            <Table.Row>
-              <Table.HeadCell className="w-16">#</Table.HeadCell>
-              <Table.HeadCell>Pool</Table.HeadCell>
-              <Table.HeadCell className="w-48">TVL (USD)</Table.HeadCell>
-              <Table.HeadCell className="w-48">24h volume (USD)</Table.HeadCell>
-            </Table.Row>
-          </Table.Head>
-          <Table.Body>
-            {data && !fetching
-              ? data.pools.map((pool, poolIndex) => (
-                  <Table.Row key={pool.id}>
-                    <Table.BodyCell>
-                      {(page - 1) * 10 + (poolIndex + 1)}
-                    </Table.BodyCell>
-                    <Table.BodyCell>
-                      {pool.token0.symbol}/{pool.token1.symbol}
-                    </Table.BodyCell>
-                    <Table.BodyCell>
-                      $
-                      {Intl.NumberFormat("en", { notation: "compact" }).format(
-                        pool.totalValueLockedUSD,
-                      )}
-                    </Table.BodyCell>
-                    <Table.BodyCell>
-                      $
-                      {Intl.NumberFormat("en", { notation: "compact" }).format(
-                        pool.poolDayData[0].volumeUSD,
-                      )}
-                    </Table.BodyCell>
-                  </Table.Row>
-                ))
-              : Array(10)
-                  .fill(null)
-                  .map((_, index0) => (
-                    <Table.Row key={index0}>
-                      {Array(4)
-                        .fill(null)
-                        .map((_, index1) => (
-                          <Table.BodyCell key={index1} loading />
-                        ))}
-                    </Table.Row>
-                  ))}
-          </Table.Body>
-        </Table>
-        <Table.Pagination page={page} setPage={setPage} />
-      </Table.Container>
+      <div className="overflow-x-auto rounded-lg border-2 border-gray-200 dark:border-gray-800">
+        <table className="w-full border-collapse border-spacing-0 md:table-fixed">
+          <thead>
+            <tr className="text-left font-semibold text-gray-600 dark:text-gray-400 h-12">
+              <th className="w-16 px-4">#</th>
+              <th className="px-4">Pool</th>
+              <th className="w-48 px-4">TVL (USD)</th>
+              <th className="w-48 px-4">24h volume (USD)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data && !fetching ? (
+              <DataRows data={data} page={page} />
+            ) : (
+              <LoadingRows />
+            )}
+          </tbody>
+        </table>
+        <nav className="flex justify-center gap-2 p-2">
+          <IconButton
+            disabled={page === 1}
+            onClick={() => setPage((page) => page - 1)}
+          >
+            <ArrowLeftIcon className="h-5 w-5" />
+            <span className="sr-only">Back</span>
+          </IconButton>
+          <input
+            className="w-12 rounded-md bg-gray-200 text-center font-medium text-blue-700 dark:bg-gray-800 dark:text-blue-300"
+            onChange={handlePageInputChange}
+            type="number"
+            value={page}
+          />
+          <IconButton onClick={() => setPage((page) => page + 1)}>
+            <ArrowRightIcon className="h-5 w-5" />
+            <span className="sr-only">Next</span>
+          </IconButton>
+        </nav>
+      </div>
     </div>
   );
+}
+
+type DataRowsProps = {
+  data: PoolsQuery;
+  page: number;
+};
+
+function DataRows({ data, page }: DataRowsProps) {
+  return data.pools.map((pool, poolIndex) => (
+    <tr className="h-16" key={pool.id}>
+      <td className="px-4">{(page - 1) * 10 + (poolIndex + 1)}</td>
+      <td className="px-4">
+        {pool.token0.symbol}/{pool.token1.symbol}
+      </td>
+      <td className="px-4">
+        $
+        {Intl.NumberFormat("en", { notation: "compact" }).format(
+          pool.totalValueLockedUSD,
+        )}
+      </td>
+      <td className="px-4">
+        $
+        {Intl.NumberFormat("en", { notation: "compact" }).format(
+          pool.poolDayData[0].volumeUSD,
+        )}
+      </td>
+    </tr>
+  ));
+}
+
+function LoadingRows() {
+  return Array(10)
+    .fill(null)
+    .map((_, index0) => (
+      <tr key={index0}>
+        {Array(4)
+          .fill(null)
+          .map((_, index1) => (
+            <td className="h-16 px-4" key={index1}>
+              <div className="h-6 animate-pulse rounded-md bg-gray-300 dark:bg-gray-700" />
+            </td>
+          ))}
+      </tr>
+    ));
 }
