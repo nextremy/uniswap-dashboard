@@ -17,7 +17,7 @@ export function PoolRows({ page }: PoolRowsProps) {
     <tr className="h-16" key={pool.id}>
       <td className="px-4">{(page - 1) * 10 + (poolIndex + 1)}</td>
       <td className="px-4">
-        <div className="flex h-16 items-center gap-4">
+        <div className="flex items-center gap-4">
           <div className="relative w-10">
             <img
               alt=""

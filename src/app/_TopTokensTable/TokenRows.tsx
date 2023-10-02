@@ -17,7 +17,7 @@ export function TokenRows({ page }: TokenRowsProps) {
     <tr className="h-16" key={token.id}>
       <td className="px-4">{(page - 1) * 10 + (tokenIndex + 1)}</td>
       <td className="px-4">
-        <div className="flex h-16 items-center gap-4">
+        <div className="flex items-center gap-4">
           <img
             alt=""
             className="rounded-full"
@@ -29,7 +29,10 @@ export function TokenRows({ page }: TokenRowsProps) {
             src={getTokenIconSrc(token.id)}
             width={24}
           />
-          {token.name} ({token.symbol})
+          <span className="inline md:hidden">{token.symbol}</span>
+          <span className="hidden md:inline">
+            {token.name} ({token.symbol})
+          </span>
         </div>
       </td>
       <td className="px-4">
