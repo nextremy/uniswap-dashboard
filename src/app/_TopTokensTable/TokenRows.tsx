@@ -30,8 +30,8 @@ export function TokenRows({ page }: TokenRowsProps) {
             src={getTokenIconSrc(token.id)}
             width={24}
           />
-          <span className="inline md:hidden">{token.symbol}</span>
-          <span className="hidden md:inline">
+          <span className="inline lg:hidden">{token.symbol}</span>
+          <span className="hidden lg:inline">
             {token.name} ({token.symbol})
           </span>
         </div>
