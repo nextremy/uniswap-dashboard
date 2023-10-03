@@ -1,4 +1,5 @@
 import { LoadingRows } from "@/components/LoadingRows";
+import { formatUSDAmount } from "@/utils/formatUSDAmount";
 import { getTokenIconSrc } from "@/utils/getTokenIconSrc";
 import { usePools } from "./usePools";
 
@@ -45,18 +46,8 @@ export function PoolRows({ page }: PoolRowsProps) {
           {pool.token0.symbol}/{pool.token1.symbol}
         </div>
       </td>
-      <td className="px-4">
-        $
-        {Intl.NumberFormat("en", { notation: "compact" }).format(
-          pool.totalValueLockedUSD,
-        )}
-      </td>
-      <td className="px-4">
-        $
-        {Intl.NumberFormat("en", { notation: "compact" }).format(
-          pool.poolDayData[0].volumeUSD,
-        )}
-      </td>
+      <td className="px-4">{formatUSDAmount(pool.totalValueLockedUSD)}</td>
+      <td className="px-4">{formatUSDAmount(pool.poolDayData[0].volumeUSD)}</td>
     </tr>
   ));
 }

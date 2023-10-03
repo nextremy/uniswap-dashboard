@@ -1,4 +1,5 @@
 import { LoadingRows } from "@/components/LoadingRows";
+import { formatUSDAmount } from "@/utils/formatUSDAmount";
 import { getTokenIconSrc } from "@/utils/getTokenIconSrc";
 import { useTokens } from "./useTokens";
 
@@ -36,10 +37,7 @@ export function TokenRows({ page }: TokenRowsProps) {
         </div>
       </td>
       <td className="px-4">
-        $
-        {Intl.NumberFormat("en", { notation: "compact" }).format(
-          token.tokenDayData[0].priceUSD,
-        )}
+        {formatUSDAmount(token.tokenDayData[0].priceUSD)}
       </td>
       <td className="px-4">
         {(() => {
@@ -66,12 +64,7 @@ export function TokenRows({ page }: TokenRowsProps) {
           }
         })()}
       </td>
-      <td className="px-4">
-        $
-        {Intl.NumberFormat("en", { notation: "compact" }).format(
-          token.totalValueLockedUSD,
-        )}
-      </td>
+      <td className="px-4">{formatUSDAmount(token.totalValueLockedUSD)}</td>
     </tr>
   ));
 }

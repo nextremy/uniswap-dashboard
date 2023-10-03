@@ -1,6 +1,8 @@
 "use client";
 
 import { LoadingRows } from "@/components/LoadingRows";
+import { formatTokenAmount } from "@/utils/formatTokenAmount";
+import { formatUSDAmount } from "@/utils/formatUSDAmount";
 import { cx } from "class-variance-authority";
 import { differenceInMinutes } from "date-fns";
 import Link from "next/link";
@@ -37,34 +39,29 @@ export function TransactionRows({ page }: TransactionRowsProps) {
       </td>
       <td className="px-4">
         {(() => {
-          const format = (n: string) =>
-            Intl.NumberFormat("en", { notation: "compact" }).format(
-              Math.abs(Number(n)),
-            );
           if (transaction.__typename === "Swap") {
-            return transaction.amount0 < 0
-              ? `${format(transaction.amount1)} ${
-                  transaction.token1.symbol
-                } -> ${format(transaction.amount0)} ${
-                  transaction.token0.symbol
-                }`
-              : `${format(transaction.amount0)} ${
-                  transaction.token0.symbol
-                } -> ${format(transaction.amount1)} ${
-                  transaction.token1.symbol
-                }`;
+            if (transaction.amount0 < 0) {
+              return `${formatTokenAmount(Math.abs(transaction.amount1))} ${
+                transaction.token1.symbol
+              } -> ${formatTokenAmount(Math.abs(transaction.amount0))} ${
+                transaction.token0.symbol
+              }`;
+            } else {
+              return `${formatTokenAmount(Math.abs(transaction.amount0))} ${
+                transaction.token0.symbol
+              } -> ${formatTokenAmount(Math.abs(transaction.amount1))} ${
+                transaction.token1.symbol
+              }`;
+            }
           }
-          return `${format(transaction.amount0)} ${
+          return `${formatTokenAmount(Math.abs(transaction.amount0))} ${
             transaction.token0.symbol
-          } + ${format(transaction.amount1)} ${transaction.token1.symbol}`;
+          } + ${formatTokenAmount(Math.abs(transaction.amount1))} ${
+            transaction.token1.symbol
+          }`;
         })()}
       </td>
-      <td className="px-4">
-        $
-        {Intl.NumberFormat("en", { notation: "compact" }).format(
-          transaction.amountUSD,
-        )}
-      </td>
+      <td className="px-4">{formatUSDAmount(transaction.amountUSD)}</td>
       <td className="px-4">
         <Link
           className="text-blue-700 hover:underline dark:text-blue-300"
