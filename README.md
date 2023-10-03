@@ -2,6 +2,9 @@
 
 A Next.js frontend interface that visualizes data from the [Uniswap V3 subgraph](https://github.com/Uniswap/v3-subgraph). This application fetches data from the subgraph and displays it in paginated tables.
 
+![Screenshot 2023-10-02 185050](https://github.com/nextremy/uniswap-dashboard/assets/99709675/24caa728-4119-4286-9583-67c39a838245)
+![Screenshot 2023-10-02 184942](https://github.com/nextremy/uniswap-dashboard/assets/99709675/325b770b-7e02-4133-bb48-985685d3ede9)
+
 ## Running the dashboard
 
 Ensure that a recent version of [Node.js](https://nodejs.org/en) is installed on your system. To set up and run the dashboard, run the following script:
