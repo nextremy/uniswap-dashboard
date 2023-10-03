@@ -81,7 +81,7 @@ export function TransactionRows({ page }: TransactionRowsProps) {
             transactionTimestamp,
           );
           if (time === 0) {
-            return "< 1 minute ago";
+            return "<1 minute ago";
           } else if (time === 1) {
             return `1 minute ago`;
           } else {
