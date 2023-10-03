@@ -13,7 +13,7 @@ A live demo of the dashboard is available at [uniswap.remywood.com](https://unis
 
 ### Running locally
 
-Ensure that a recent version of [Node.js](https://nodejs.org/en) is installed on your system. To set up and run the dashboard, run the following script:
+Ensure that a recent version of [Node.js](https://nodejs.org/en) is installed on your system. To set up and run the dashboard after cloning the repository, run the following script:
 ```
 npm install
 npm run build
