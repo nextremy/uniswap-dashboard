@@ -23,13 +23,13 @@ export function TopPoolsTable() {
       </div>
       <div className="rounded-lg border-2 border-gray-200 dark:border-gray-800">
         <div className="overflow-x-auto">
-          <table className="w-full border-collapse border-spacing-0 text-sm md:table-fixed md:text-base">
+          <table className="w-full table-fixed border-collapse border-spacing-0 text-sm md:text-base">
             <thead>
               <tr className="h-12 text-left font-semibold text-gray-600 dark:text-gray-400">
-                <th className="w-16 px-4">#</th>
-                <th className="px-4">Pool</th>
-                <th className="w-48 px-4">TVL</th>
-                <th className="w-48 px-4">24h volume</th>
+                <th className="w-12 px-4 md:w-16">#</th>
+                <th className="w-48 px-4 md:w-fit">Pool</th>
+                <th className="w-24 px-4 md:w-48">TVL</th>
+                <th className="w-24 px-4 md:w-48">24h volume</th>
               </tr>
             </thead>
             <tbody>
