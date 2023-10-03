@@ -27,7 +27,7 @@ export function TopPoolsTable() {
             <thead>
               <tr className="h-12 text-left font-semibold text-gray-600 dark:text-gray-400">
                 <th className="w-12 px-4 md:w-16">#</th>
-                <th className="w-48 px-4 md:w-fit">Pool</th>
+                <th className="w-48 px-4 md:w-auto">Pool</th>
                 <th className="w-24 px-4 md:w-48">TVL</th>
                 <th className="w-24 px-4 md:w-48">24h volume</th>
               </tr>

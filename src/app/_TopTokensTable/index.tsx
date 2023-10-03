@@ -29,7 +29,7 @@ export function TopTokensTable() {
             <thead>
               <tr className="h-12 text-left font-semibold text-gray-600 dark:text-gray-400">
                 <th className="w-12 px-4 md:w-16">#</th>
-                <th className="w-32 px-4 md:w-fit">Token</th>
+                <th className="w-32 px-4 md:w-auto">Token</th>
                 <th className="w-24 px-4 md:w-48">Price</th>
                 <th className="w-24 px-4 md:w-48">24h change</th>
                 <th className="w-24 px-4 md:w-48">TVL</th>

@@ -29,7 +29,7 @@ export function TransactionsTable() {
             <thead>
               <tr className="h-12 text-left font-semibold text-gray-600 dark:text-gray-400">
                 <th className="w-24 px-4 md:w-24">Type</th>
-                <th className="w-48 px-4 md:w-fit">Token amounts</th>
+                <th className="w-48 px-4 md:w-auto">Token amounts</th>
                 <th className="w-16 px-4 md:w-48">Total value</th>
                 <th className="w-32 px-4 md:w-48">Account</th>
                 <th className="w-32 px-4 md:w-48">Time</th>
