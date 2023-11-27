@@ -9,7 +9,7 @@ A Next.js frontend interface that visualizes data from the [Uniswap V3 subgraph]
 
 ### Live demo
 
-A live demo of the dashboard is available at [pages.dev](https://uniswap-dashboard.pages.dev/).
+A live demo of the dashboard is available on [Cloudflare Pages](https://uniswap-dashboard.pages.dev/).
 
 ### Running locally
 
